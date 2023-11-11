@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  web:
+    container_name: web-app
+    restart: always
+    build: .
+    ports:
+      - "4321:4321"
+    links:
+      - mongo
+    volumes:
+      - ./src:/usr/app/src
+  mongo:
+    container_name: mongodb
+    image: mongo
+    ports:
+      - "27018:27017"
+    volumes:
+      - ./db:/data/db
+    

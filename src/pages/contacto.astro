@@ -1,0 +1,35 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+<Layout title="Contacto">
+    <div slot="Content" class="p-6 sm:ml-64">
+            <form method="post" class="p-2 border-2 border-transparent rounded-lg mt-16 max-w-screen mx-auto">
+                <div class="grid grid-cols-2 gap-2">
+                    <label class="flex items-center justify-center h-32 rounded bg-red-800 dark:bg-red-800">
+                        <span class="text-lg ml-4 mr-2 ">Nombre y apellidos:</span>
+                        <input type="text" class="rounded shadow-md bg-white mr-3 sm:mr-5 focus:outline-none border-2 border-black w-2/5" name="Nombre y apellidos"/>
+                    </label>
+                    <label class="flex items-center justify-center h-32 rounded bg-red-800 dark:bg-red-800">
+                        <span class="text-lg">Correo: </span>
+                        <input type="text" class="w-2/5 rounded shadow-md bg-white ml-2 focus:outline-none border-2 border-black" name="Correo"/>
+                    </label>
+                    <label class="flex items-center justify-center h-32 rounded bg-red-800 dark:bg-red-800">
+                        <span class="text-lg font-serif">Teléfono: </span>
+                        <input type="text" class="w-2/5 rounded shadow-md bg-white ml-2 focus:outline-none border-2 border-black" name="Telefóno"/>
+                    </label>
+                    <label class="flex items-center justify-center h-32 rounded bg-red-800 dark:bg-red-800">
+                        <span class="text-lg font-serif">Disponibilidad: </span>
+                        <input type="time" class="w-auto justify-center rounded shadow-md bg-white ml-2 focus:outline-none border-2 border-black" name="Disponibilidad"/>
+                    </label>
+                    <div class="flex items-center justify-center col-span-2 h-72 rounded bg-black dark:bg-red-800">
+                        <label class="items-baseline justify-center col-span-2 rounded bg-black dark:bg-red-800">
+                            <span class="text-lg flex justify-center">Mensaje:  </span></br>
+                            <textarea class="flex justify-end rounded-sm shadow-md max-h-56 m-px shadow-black border-2 border-black focus:outline-none h-40 max-w-96 w-80"></textarea>
+                        </label>
+                        </div>
+                    </div>
+                </div>    
+            </form>
+    </div>
+
+</Layout>
