@@ -3,6 +3,13 @@ import { slide } from "astro:transitions";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="QuienesSomos" transition:animate={slide()}>
+<Layout title="QuienesSomos">
+    <div slot="Content" class="p-6 sm:ml-64 dark:bg-black bg-white" transition:animate="fade">
+        <div class="p-2 border-2 border-transparent rounded-lg mt-16 w-auto h-auto">
+           <div class="h-screen">
 
+           </div>
+        </div>
+     </div>
+     
 </Layout>
