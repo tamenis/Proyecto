@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Sidebar from '../components/Sidebar.astro';
+import {ViewTransitions} from 'astro:transitions';
 // En este script de javascript se realiza una peticion de un argumento este es title 
 // Que luego sera ingresado como nombre de la pagina 
 
@@ -22,6 +23,7 @@ const { title } = Astro.props;
 		<!-- En esta parte del codigo podriamos haber utilizado la etiqueta meta con el nombre "generator" para hacer referencia
 		al web framework que estamos utilizando y la version, pero esto puede suponer un riesgo para la seguridad de la pagina  -->
 		<title>{title}</title>
+		<ViewTransitions/>
 	</head>
 
 	<body class="bg-white dark:bg-black h-screen">
