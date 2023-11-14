@@ -8,8 +8,8 @@
 
 ### <center> Software necesario y descripción <center>
 &nbsp;&nbsp;&nbsp;&nbsp;A continuación describiré las tecnologías necesarias para reproducir esta memoria.
- - **Node JS:** <p>Node JS es un entorno de ejecución de Javascript. Nos permite ejecutar Javascript fuera del navegador, utiliza el motor V8 de Google Chrome y funciona a través de procesos de un solo hilo  </p>
- - **Npm:** <p>Npm </p>
+ - **Node JS:** <p>Node JS es un entorno de ejecución de Javascript. Nos permite ejecutar Javascript fuera del navegador, utiliza el motor V8 de Google Chrome y funciona a través de procesos de un solo hilo. Node JS funcionará en nuestro caso cómo backend que conectará la aplicación con una base de datos. La razón por la que he elegido Node JS es el uso de un mismo lenguaje como es Javascript, además existe en internet muchas fuentes de contenido sobre despliegue de aplicaciones web con Node.</p>
+ - **Npm:** <p>Npm es un gestor de paquetes para Node JS. Utilizaremos Npm para descargar todas las dependencias y generar el template de Astro. Npm usará los archivos de **package.json** y **package-lock.json**. Una alternativa que recientemente ha lanzado su primera versión es bun que sustituye a Node y Npm. Bun proporciona mejor rendimiento tanto en el tiempo de ejecución cómo en la administración de paquetes. Pero dado que su primera versión ha sido lanzada durante la realización de este trabajo  </p>
  - **Tailwind CSS:**
  - **Astro:**
  - **Express:**
