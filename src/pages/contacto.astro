@@ -1,42 +1,113 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from '../layouts/Layout.astro'
+
+const placeholder = {
+  Nombre: 'Nombre y apellidos',
+  Correo: 'Correo electrónico',
+  Telefono: 'Telefóno'
+}
+const errors = { Nombre: '', Correo: '' }
+if (Astro.request.method === 'POST') {
+  try {
+    const data = await Astro.request.formData()
+    const nombre = data.get('Nombre')
+    const correo = data.get('Correo')
+    const telefono = data.get('Telefóno')
+    const disponibilidad = data.get('Disponibilidad')
+    const mensaje = data.get('Mensaje')
+
+    if (typeof nombre !== 'string' || nombre.length < 1) {
+      placeholder.Nombre += 'Introduce tu nombre y apellidos. '
+    }
+    if (typeof correo !== 'string' || correo.length < 1) {
+      placeholder.Correo += 'Introduce un correo válido. '
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message)
+    }
+  }
+}
 ---
-<Layout title="Contacto" transition:animate="slide">
-    <div slot="Content" class="p-6 sm:ml-64">
-        <form method="post" action="/Contacto" class="p-2 border-2 border-transparent rounded-lg mt-16 max-w-screen mx-auto">
-            <div class="grid grid-cols-2 gap-2">
-                
-                <label class="flex items-center justify-center h-32 rounded border-2 border-black shadow-xl bg-blue-700 dark:bg-white">
-                    <input type="text" class="text-center rounded shadow-md bg-white mr-3 sm:mr-5 focus:outline-none border-2 border-black w-2/5" placeholder="Nombre y apellidos" name="Nombre"/>
-                </label>
-                    
-                <label class="flex items-center justify-center h-32 rounded border-2 border-black shadow-xl bg-yellow-300 dark:bg-yellow-300">
-                    <input type="text" class="text-center w-2/5 h-1/3 rounded shadow-md bg-white ml-2 focus:outline-none border-2 border-black" name="mail" placeholder="Correo"/>
-                </label>
-                
-                <label class="flex items-center justify-center h-32 rounded border-2 border-black shadow-xl bg-red-600 dark:bg-red-600">
-                    <input type="text" class="text-center w-2/5 rounded shadow-md bg-white ml-2 focus:outline-none border-2 border-black" name="Telefóno" placeholder="Teléfono"/>
-                </label>
-                
-                <label class="flex items-center justify-center h-32 rounded border-2 shadow-xl border-black bg-blue-700 dark:bg-white">
-                    <select class="w-2/5 block justify-center rounded shadow-md bg-white ml-2 focus:outline-none border-2 border-black" name="Disponibilidad" >
-                        <option>Disponibilidad</option>
-                        <option></option>
-                    </select>
-                </label>
-                
-                <div class="flex items-center justify-center col-span-2 h-60 rounded border-2 border-black shadow-xl bg-yellow-300 dark:bg-blue-700 overflow-x-hidden">
-                    <label class="relative items-baseline justify-center col-span-2 rounded bg-yellow-300 dark:bg-blue-700 text-black">
-                        <p class="font-bold text-lg flex justify-center text-black">Mensaje:  </p></br>
-                        <textarea class="max-w-screen overflow-hidden relative justify-end rounded-sm shadow-lg dark:shadow-md m-px dark:shadow-black border-2 min-w-fit border-black focus:outline-none h-40 w-80 xl:w-96 resize-none text-black"></textarea>
-                    </label>
-                </div>
 
-                <button type="submit" class="font-bold flex items-center justify-center h-20 col-span-2 rounded border-2 shadow-xl border-black bg-blue-700 dark:bg-red-600">
-                    Enviar formulario
-                </button>
-            </div>    
-        </form>
-    </div>
+<Layout title='Contacto' transition:animate='slide'>
+  <div slot='Content' class='p-6 sm:ml-64'>
+    <form
+      method='post'
+      action='/Contacto'
+      class='p-2 border-2 border-transparent rounded-lg mt-16 max-w-screen mx-auto'
+    >
+      <div class='grid grid-cols-2 gap-2'>
+        <label
+          class='flex items-center justify-center h-32 rounded border-2 border-black shadow-xl bg-blue-700 dark:bg-white'
+        >
+          <input
+            type='text'
+            class='text-center rounded shadow-md bg-white mr-3 sm:mr-5 focus:outline-none border-2 border-black w-2/5'
+            placeholder={placeholder.Nombre}
+            name='Nombre'
+            required
+          />
+        </label>
 
+        <label
+          class='flex items-center justify-center h-32 rounded border-2 border-black shadow-xl bg-yellow-300 dark:bg-yellow-300'
+        >
+          <input
+            type='email'
+            class='text-center w-2/5 h-1/3 rounded shadow-md bg-white ml-2 focus:outline-none border-2 border-black'
+            name='Correo'
+            placeholder={placeholder.Correo}
+            required
+          />
+        </label>
+
+        <label
+          class='flex items-center justify-center h-32 rounded border-2 border-black shadow-xl bg-red-600 dark:bg-red-600'
+        >
+          <input
+            type='text'
+            class='text-center w-2/5 rounded shadow-md bg-white ml-2 focus:outline-none border-2 border-black'
+            name='Telefóno'
+            placeholder={placeholder.Telefono}
+          />
+        </label>
+
+        <label
+          class='flex items-center justify-center h-32 rounded border-2 shadow-xl border-black bg-blue-700 dark:bg-white'
+        >
+          <select
+            class='w-2/5 block justify-center rounded shadow-md bg-white ml-2 focus:outline-none border-2 border-black'
+            name='Disponibilidad'
+          >
+            <option>Disponibilidad</option>
+            <option></option>
+          </select>
+        </label>
+
+        <div
+          class='flex items-center justify-center col-span-2 h-60 rounded border-2 border-black shadow-xl bg-yellow-300 dark:bg-blue-700 overflow-x-hidden'
+        >
+          <label
+            class='relative items-baseline justify-center col-span-2 rounded bg-yellow-300 dark:bg-blue-700 text-black'
+          >
+            <p class='font-bold text-lg flex justify-center text-black'>
+              Mensaje:
+            </p></label
+          >
+          <textarea
+            name='Mensaje'
+            class='max-w-screen overflow-hidden relative justify-end rounded-sm shadow-lg dark:shadow-md m-px dark:shadow-black border-2 min-w-fit border-black focus:outline-none h-40 w-80 xl:w-96 resize-none text-black'
+          ></textarea>
+        </div>
+      </div>
+
+      <button
+        type='submit'
+        class='font-bold flex items-center justify-center h-20 col-span-2 rounded border-2 shadow-xl border-black bg-blue-700 dark:bg-red-600'
+      >
+        Enviar formulario
+      </button>
+    </form>
+  </div>
 </Layout>
