@@ -8,7 +8,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "preinstall": "npm i nodemon -g"
+    "preinstall": "npm i nodemon -g",
+    "lint": "prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro}\""
   },
   "dependencies": {
     "@astrojs/check": "^0.2.1",
@@ -24,7 +25,14 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
-    "nodemon": "^3.0.1"
+    "@typescript-eslint/parser": "^6.11.0",
+    "eslint": "^8.54.0",
+    "eslint-plugin-astro": "^0.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.1.0",
+    "prettier-config-standard": "^7.0.0",
+    "prettier-plugin-astro": "^0.12.2"
   },
   "eslintConfig": {
     "extends": "standard"
