@@ -24,31 +24,33 @@ if (Astro.request.method === 'POST') {
 
     if (typeof nombre !== 'string' || nombre.length < 1) {
       placeholder.Nombre = 'Introduce tu nombre y apellidos. '
-    }
-    if (typeof correo !== 'string' || correo.length < 1) {
+      if (typeof correo !== 'string' || correo.length < 1) {
       placeholder.Correo = 'Introduce un correo válido. '
-    }
 
-  async function run (){
-    try{
-      await client.db().command({ping:1})
-      console.log("Conexión realizada con la base de datos")
-      const db = client.db("Contactos")
-      const collection = db.collection("Formularios")
-      const doc = {
-        Nombre:`${nombre}`,
-        Correo:`${correo}`,
-        Telefono:`${telefono}`,
-        Disponibilidad:`${disponibilidad}`,
-        Mensaje:`${mensaje}`
-      }
-      const result = await collection.insertOne(doc)
-      console.log("Se ha registrado un nuevo formulario")
-    } finally{
-      await client.close()
+      async function run (){
+        try{
+          await client.db().command({ping:1})
+            console.log("Conexión realizada con la base de datos")
+            const db = client.db("Contactos")
+            const collection = db.collection("Formularios")
+            const doc = {
+              Nombre:`${nombre}`,
+              Correo:`${correo}`,
+              Telefono:`${telefono}`,
+              Disponibilidad:`${disponibilidad}`,
+              Mensaje:`${mensaje}`
+            }
+            const result = await collection.insertOne(doc)
+            console.log("Se ha registrado un nuevo formulario")
+        } finally{
+            await client.close()
+        }
+        run().catch(console.dir)
     }
+    }
+  
   }
-  run().catch(console.dir)
+  
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message)
