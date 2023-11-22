@@ -27,9 +27,13 @@ const { title } = Astro.props
   </head>
 
   <body class='bg-white dark:bg-black h-screen w-screen'>
-    <Header />
-    <Sidebar />
-    <slot name='Content' />
+    
+    <div id="app" class="relative h-screen">
+      <Header class="[grid-area:Header]" />
+      <Sidebar class="[grid-area:Sidebar]" />
+      <slot class="col-span-2 row-span-2 [grid-area:slot]" name='Content' />
+    </div>
+    
     <style is:global>
       :root {
         --accent: 136, 58, 234;
@@ -57,6 +61,15 @@ const { title } = Astro.props
           Bitstream Vera Sans Mono,
           Courier New,
           monospace;
+      }
+      #app {
+        display: grid;
+        grid-template-areas: 
+          'Header Header'
+          'Sidebar slot'
+        ;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: 1fr auto;
       }
     </style>
   </body>
