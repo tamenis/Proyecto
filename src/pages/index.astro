@@ -6,52 +6,52 @@ import Layout from '../layouts/Layout.astro'
 <Layout title='index'>
   <div
     slot='Content'
-    class='p-6 sm:ml-64 dark:bg-black bg-white h-auto w-auto'
+    class='flex flex-col p-6 sm:ml-64 dark:bg-black bg-white h-full w-auto min-h-screen'
     transition:animate={fade()}
   >
-    <div class='p-2 border-2 border-transparent rounded-lg mt-16 w-auto h-auto'>
-      <div class='grid grid-cols-3 gap-2 mb-4'>
+    <div class='p-2 border-2 border-transparent rounded-lg mt-16 w-full h-full max-w-screen flex-grow'>
+      <div class='grid grid-cols-3 gap-2 mb-4 h-32'>
         <div
-          class='flex items-center justify-center h-32 rounded bg-red-600 dark:bg-red-600 duration-300 hover:scale-90'
+          class='flex items-center justify-center h-full rounded bg-red-600 dark:bg-red-600 duration-300 hover:scale-90'
         >
-          <p class='text-2xl text-gray-400 dark:text-gray-500'></p>
+          <p class='text-2xl'>Contenido</p>
         </div>
         <div
-          class='flex items-center justify-center h-32 rounded bg-black dark:bg-white duration-300 hover:scale-90'
+          class='flex items-center justify-center h-full rounded bg-black dark:bg-white duration-300 hover:scale-90'
         >
-          <p class='text-2xl text-gray-400 dark:text-gray-500'></p>
+          <p class='text-2xl'>Contenido</p>
         </div>
         <div
-          class='flex items-center justify-center h-32 rounded bg-yellow-300 dark:bg-yellow-300 duration-300 hover:scale-90'
+          class='flex items-center justify-center h-full rounded bg-yellow-300 dark:bg-yellow-300 duration-300 hover:scale-90'
         >
-          <p class='text-2xl text-gray-400 dark:text-gray-500'></p>
+          <p class='text-2xl '>Contenido</p>
         </div>
       </div>
       <div
-        class='flex items-center justify-center h-40 mb-4 rounded bg-blue-700 dark:bg-blue-700 duration-300 hover:scale-90'
+        class='flex items-center justify-center h-56 mb-4 rounded bg-blue-700 dark:bg-blue-700 duration-300 hover:scale-90'
       >
-        <p class='text-2xl text-gray-400 dark:text-gray-500'></p>
+        <p class='text-2xl '></p>
       </div>
       <div class='grid grid-cols-2 gap-4 mb-4'>
         <div
           class='flex items-center justify-center rounded bg-black h-32 dark:bg-white duration-300 hover:scale-90'
         >
-          <p class='text-2xl text-gray-400 dark:text-gray-500'></p>
+          <p class='text-2xl '></p>
         </div>
         <div
           class='flex items-center justify-center rounded bg-red-600 h-32 dark:bg-red-600 duration-300 hover:scale-90'
         >
-          <p class='text-2xl text-gray-400 dark:text-gray-500'></p>
+          <p class='text-2xl'></p>
         </div>
         <div
           class='flex items-center justify-center rounded bg-yellow-300 h-32 dark:bg-yellow-300 duration-300 hover:scale-90'
         >
-          <p class='text-2xl text-gray-400 dark:text-gray-500'></p>
+          <p class='text-2xl'></p>
         </div>
         <div
           class='flex items-center justify-center rounded hover:scale-90 bg-black h-32 duration-300 dark:bg-white'
         >
-          <p class='text-2xl text-gray-400 dark:text-gray-500'></p>
+          <p class='text-2xl'></p>
         </div>
       </div>
     </div>
