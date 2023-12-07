@@ -1,10 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import { Db, MongoClient } from 'mongodb'
-import {body,validationResult} from 'express-validator'
+import { body, validationResult } from 'express-validator'
 export const prerender = false
 
-const uri = "mongodb://mongodb:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.0.2"
+const uri =
+  'mongodb://mongodb:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.0.2'
 const client = new MongoClient(uri)
 
 const placeholder = {
@@ -25,32 +26,30 @@ if (Astro.request.method === 'POST') {
     if (typeof nombre !== 'string' || nombre.length < 1) {
       placeholder.Nombre = 'Introduce tu nombre y apellidos. '
       if (typeof correo !== 'string' || correo.length < 1) {
-      placeholder.Correo = 'Introduce un correo válido. '
+        placeholder.Correo = 'Introduce un correo válido. '
 
-      async function run (){
-        try{
-          await client.db().command({ping:1})
-            console.log("Conexión realizada con la base de datos")
-            const db = client.db("Contactos")
-            const collection = db.collection("Formularios")
+        async function run() {
+          try {
+            await client.db().command({ ping: 1 })
+            console.log('Conexión realizada con la base de datos')
+            const db = client.db('Contactos')
+            const collection = db.collection('Formularios')
             const doc = {
-              Nombre:`${nombre}`,
-              Correo:`${correo}`,
-              Telefono:`${telefono}`,
-              Disponibilidad:`${disponibilidad}`,
-              Mensaje:`${mensaje}`
+              Nombre: `${nombre}`,
+              Correo: `${correo}`,
+              Telefono: `${telefono}`,
+              Disponibilidad: `${disponibilidad}`,
+              Mensaje: `${mensaje}`
             }
             const result = await collection.insertOne(doc)
-            console.log("Se ha registrado un nuevo formulario")
-        } finally{
+            console.log('Se ha registrado un nuevo formulario')
+          } finally {
             await client.close()
+          }
+          run().catch(console.dir)
         }
-        run().catch(console.dir)
+      }
     }
-    }
-  
-  }
-  
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message)
@@ -59,42 +58,81 @@ if (Astro.request.method === 'POST') {
 }
 ---
 
-<Layout title="Contacto" transition:animate="slide">
-  <div slot="Content" class="p-6 sm:ml-64">
-      <form method="post" action="/Contacto" class="p-2 border-2 border-transparent rounded-lg mt-16 max-w-screen mx-auto">
-          <div class="grid grid-cols-2 gap-2">
-              
-              <label class="flex items-center justify-center h-32 rounded border-2 border-black shadow-xl bg-blue-700 dark:bg-white">
-                  <input type="text" class="text-center rounded shadow-md bg-white mr-3 sm:mr-5 focus:outline-none border-2 border-black w-2/5" placeholder={placeholder.Nombre} name="Nombre"/>
-              </label>
-                  
-              <label class="flex items-center justify-center h-32 rounded border-2 border-black shadow-xl bg-yellow-300 dark:bg-yellow-300">
-                  <input type="text" class="text-center w-2/5 h-1/3 rounded shadow-md bg-white ml-2 focus:outline-none border-2 border-black" name="mail" placeholder={placeholder.Correo}/>
-              </label>
-              
-              <label class="flex items-center justify-center h-32 rounded border-2 border-black shadow-xl bg-red-600 dark:bg-red-600">
-                  <input type="text" class="text-center w-2/5 rounded shadow-md bg-white ml-2 focus:outline-none border-2 border-black" name="Telefono" placeholder={placeholder.Telefono}/>
-              </label>
-              
-              <label class="flex items-center justify-center h-32 rounded border-2 shadow-xl border-black bg-blue-700 dark:bg-white">
-                  <select class="w-2/5 block justify-center rounded shadow-md bg-white ml-2 focus:outline-none border-2 border-black" name="Disponibilidad" >
-                      <option>Disponibilidad</option>
-                      <option></option>
-                  </select>
-              </label>
-              
-              <div class="flex items-center justify-center col-span-2 h-60 rounded border-2 border-black shadow-xl bg-yellow-300 dark:bg-blue-700 overflow-x-hidden">
-                  <label class="relative items-baseline justify-center col-span-2 rounded bg-yellow-300 dark:bg-blue-700 text-black">
-                      <p class="font-bold text-lg flex justify-center text-black">Mensaje:  </p></br>
-                      <textarea class="max-w-screen overflow-hidden relative justify-end rounded-sm shadow-lg dark:shadow-md m-px dark:shadow-black border-2 min-w-fit border-black focus:outline-none h-40 w-80 xl:w-96 resize-none text-black"></textarea>
-                  </label>
-              </div>
+<Layout title='Contacto' transition:animate='slide'>
+  <div slot='Content' class='p-6 sm:ml-64'>
+    <form
+      method='post'
+      action='/Contacto'
+      class='p-2 border-2 border-transparent rounded-lg mt-16 max-w-screen mx-auto'
+    >
+      <div class='grid grid-cols-2 gap-2'>
+        <label
+          class='flex items-center justify-center h-32 rounded border-2 border-black shadow-xl bg-blue-700 dark:bg-white'
+        >
+          <input
+            type='text'
+            class='text-center rounded shadow-md bg-white mr-3 sm:mr-5 focus:outline-none border-2 border-black w-2/5'
+            placeholder={placeholder.Nombre}
+            name='Nombre'
+          />
+        </label>
 
-              <button type="submit" class="font-bold flex items-center justify-center h-20 col-span-2 rounded border-2 shadow-xl border-black bg-blue-700 dark:bg-red-600">
-                  Enviar formulario
-              </button>
-          </div>    
-      </form>
+        <label
+          class='flex items-center justify-center h-32 rounded border-2 border-black shadow-xl bg-yellow-300 dark:bg-yellow-300'
+        >
+          <input
+            type='text'
+            class='text-center w-2/5 h-1/3 rounded shadow-md bg-white ml-2 focus:outline-none border-2 border-black'
+            name='mail'
+            placeholder={placeholder.Correo}
+          />
+        </label>
+
+        <label
+          class='flex items-center justify-center h-32 rounded border-2 border-black shadow-xl bg-red-600 dark:bg-red-600'
+        >
+          <input
+            type='text'
+            class='text-center w-2/5 rounded shadow-md bg-white ml-2 focus:outline-none border-2 border-black'
+            name='Telefono'
+            placeholder={placeholder.Telefono}
+          />
+        </label>
+
+        <label
+          class='flex items-center justify-center h-32 rounded border-2 shadow-xl border-black bg-blue-700 dark:bg-white'
+        >
+          <select
+            class='w-2/5 block justify-center rounded shadow-md bg-white ml-2 focus:outline-none border-2 border-black'
+            name='Disponibilidad'
+          >
+            <option>Disponibilidad</option>
+            <option></option>
+          </select>
+        </label>
+
+        <div
+          class='flex items-center justify-center col-span-2 h-60 rounded border-2 border-black shadow-xl bg-yellow-300 dark:bg-blue-700 overflow-x-hidden'
+        >
+          <label
+            class='relative items-baseline justify-center col-span-2 rounded bg-yellow-300 dark:bg-blue-700 text-black'
+          >
+            <p class='font-bold text-lg flex justify-center text-black'>
+              Mensaje:
+            </p></label
+          >
+          <textarea
+            class='max-w-screen overflow-hidden relative justify-end rounded-sm shadow-lg dark:shadow-md m-px dark:shadow-black border-2 min-w-fit border-black focus:outline-none h-40 w-80 xl:w-96 resize-none text-black'
+          ></textarea>
+        </div>
+      </div>
+
+      <button
+        type='submit'
+        class='font-bold flex items-center justify-center h-20 col-span-2 rounded border-2 shadow-xl border-black bg-blue-700 dark:bg-red-600'
+      >
+        Enviar formulario
+      </button>
+    </form>
   </div>
-
 </Layout>

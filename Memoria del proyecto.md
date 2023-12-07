@@ -12,7 +12,7 @@ En las siguientes páginas, explicaremos paso a paso la creación de esta págin
 
 ## Software necesario y descripción
 
-    A continuación describiré las tecnologías necesarias para reproducir esta memoria.
+A continuación describiré las tecnologías necesarias para reproducir esta memoria.
 
 - **Node JS:** Node JS es un entorno de ejecución de Javascript que nos permite ejecutar Javascript fuera del navegador. Funciona a través de procesos de un solo hilo y será utilizado como backend para conectar la aplicación con una base de datos. La elección de Node JS se debe al uso del mismo lenguaje, Javascript, y a la gran cantidad de contenido disponible en internet sobre despliegue de aplicaciones web con Node.
 - **Npm:** Npm es un gestor de paquetes para Node JS. Utilizaremos Npm para descargar todas las dependencias y generar el template de Astro. Npm utiliza los archivos "package.json" y "package-lock.json" para gestionar las dependencias. Aunque existe una alternativa llamada Bun, que proporciona mejor rendimiento y administración de paquetes, no se incluirá en este proyecto debido a su reciente lanzamiento. La elección de Node y npm se debe a su antigüedad y al soporte a largo plazo que ofrecen, lo que asegura la disponibilidad de información sobre despliegue de aplicaciones web.
@@ -42,18 +42,17 @@ Las dependencias que he usado para este proyecto han sido:
 Astro por defecto intenta minimizar la cantidad de Javascript que enviamos al cliente, disminuyendo de manera significativa el tiempo de respuesta y tiempo de carga de páginas web, por ello este framework opta por renderizar las páginas web de manera estática. A pesar de ello, Astro permite optar por renderizar las páginas web en el servidor, lo que será necesario para establecer cambios dinámicos en la página, enviar datos a un servidor, procesar una petición Http... Para que nuestra aplicación sea capaz de renderizar javascript en el servidor es necesario habilitar la opción de Astro de Server Side Rendering, esta opción permite que la aplicación no sea únicamente renderizada como HTML y CSS. La opción que se ha elegido para este trabajo es una tercera opción, esta opción optará por defecto por construir las páginas de manera estática pero permite hacer un bypass para que algunos componentes o páginas sean renderizados en el lado del servidor. Para habilitar el SSR es necesario configurar el archivo **astro.config.mjs**. Este es el archivo con las líneas modificadas:
 
 ```jsx
-import { defineConfig } from 'astro/config';
-import tailwind from "@astrojs/tailwind";
-import node from "@astrojs/node";
+import { defineConfig } from 'astro/config'
+import tailwind from '@astrojs/tailwind'
+import node from '@astrojs/node'
 
 export default defineConfig({
   integrations: [tailwind()],
-  output: "hybrid",
+  output: 'hybrid',
   adapter: node({
-    mode: "standalone"
+    mode: 'standalone'
   })
-});
-
+})
 ```
 
 ### 1.2 Contenedores de Docker
